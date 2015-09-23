@@ -166,6 +166,7 @@ public class routing {
             Log("Error sending ROUTE: " + e + "\n");
             return false;
         }
+        
 
     }
 
@@ -290,7 +291,8 @@ public class routing {
         act = new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Timer action 
+                // Timer action
+                
                 //CÓDIGO REALIZADO
                 send_local_ROUTE(true);
                 update_routing_table();
