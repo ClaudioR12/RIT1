@@ -9,7 +9,6 @@
  * @author  Luis Bernardo
  */
 package router;
-
 import java.util.*;
 import java.net.*;
 import java.io.*;
@@ -34,6 +33,7 @@ public class routing {
     private MulticastDaemon mdaemon;// Multicast communication object
     
     private javax.swing.Timer timer; //INICIALIZAÇÃO TIMER
+    
     
     public final Integer lock = new Integer(0);
 
@@ -282,37 +282,25 @@ public class routing {
             }
         } */
     }
-
-    
-    // FUNÇAO DE START TIMER - realizada
-    private void set_timer_function(int period) {
-         java.awt.event.ActionListener act;
-
-        act = new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                // Timer action
-                
-                //CÓDIGO REALIZADO
-                send_local_ROUTE(true);
-                update_routing_table();
-            }
-        };
-        // Create the timer's object
-        timer = new javax.swing.Timer(period, act); //Cria um timer para controlar o envio de pacotes
-    
-    }
+   
     
     
     /** Launches timer responsible for sending periodic distance packets to
         neighbours */
     private void start_announce_timer() {
        /** Arranca o relógio que envia periodicamente o pacote ROUTE */
-        timer.start();
+        int delay=10;
+        timer = new javax.swing.Timer(delay, new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                
+                send_local_ROUTE(true);
+                //update_routing_table();
+            }
+        });
     }
 
     private void stop_announce_timer() {
-        //timer.stop();
+        timer.stop();
     }
 
 
